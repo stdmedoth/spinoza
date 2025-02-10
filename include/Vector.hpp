@@ -13,11 +13,18 @@ private:
 
 public:
     Vector() { data.fill(T(0)); }
-    Vector(const std::array<T, N> &values) : data(values) {}
+    Vector(const std::array<T, N> &values) { data = values; }
 
-    T &operator[](std::size_t i) { return data[i]; }
+    T &operator[](std::size_t i)
+    {
+        return data[i];
+    }
 
     const T &operator[](std::size_t i) const { return data[i]; }
+
+    void setPoint(const std::array<T, N> &values) { data = values; }
+
+    std::array<T, N> getPoint() const { return data; }
 
     Vector operator+(const Vector &other) const
     {
@@ -51,6 +58,31 @@ public:
         }
         os << "]";
         return os;
+    }
+
+    int dot(const Vector &other)
+    {
+        int result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result += data[i] * other[i];
+        }
+        return result;
+    }
+
+    int dot()
+    {
+        int result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result += data[i] * data[i];
+        }
+        return result;
+    }
+
+    int getMagnitude()
+    {
+        return sqrt(dot());
     }
 };
 

@@ -1,5 +1,5 @@
-#ifndef VECTOR_FIELD_H
-#define VECTOR_FIELD_H
+#ifndef VECTOR_FIELD_HPP
+#define VECTOR_FIELD_HPP
 
 #include "Vector.hpp"
 #include <array>
