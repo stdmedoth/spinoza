@@ -9,12 +9,10 @@ This is a C++ project for mathematical and physics simulations, providing tools 
 │
 ├── /include
 │   ├── Vector.hpp           # Definition of the Vector class
-│   ├── VectorField.h        # Definition of the VectorField class
 │   ├── Function.h           # Definition of the Function class (for differentiation & integration)
 │
 ├── /src
 │   ├── Vector.cpp           # Implementation of the Vector class
-│   ├── VectorField.cpp      # Implementation of the VectorField class
 │   ├── Function.cpp         # Implementation of Function class
 │   └── main.cpp             # Main function with example simulations
 │
@@ -26,11 +24,9 @@ This is a C++ project for mathematical and physics simulations, providing tools 
 ### File Descriptions
 
 - **Vector.hpp**: Defines the `Vector` class for N-dimensional vector operations.
-- **VectorField.h**: Defines the `VectorField` class for handling vector fields.
-- **Function.h**: Implements differentiation and integration methods using Euler’s approach.
+- **Function.h**: Implements differentiation and integration methods using Euler’s approach for vector fields.
 - **Vector.cpp**: Implements vector operations.
-- **VectorField.cpp**: Implements vector field operations.
-- **Function.cpp**: Implements numerical differentiation and integration.
+- **Function.cpp**: Implements numerical differentiation and integration for vector fields.
 - **main.cpp**: Contains test simulations demonstrating the capabilities of the project.
 
 ## Prerequisites
@@ -51,8 +47,8 @@ brew install cmake
 
 1. **Clone the repository:**
    ```bash
-   git clone https://your-repository.git
-   cd MathPhysicsSim
+   git clone https://github.com/stdmedoth/spinoza
+   cd spinoza
    ```
 
 2. **Create a build directory:**
@@ -70,13 +66,13 @@ brew install cmake
    ```bash
    make
    ```
-   This will generate the executable `MathPhysicsSim` in the `build` directory.
+   This will generate the executable `spinoza` in the `build` directory.
 
 ## Running Simulations
 
 Execute the program with:
 ```bash
-./MathPhysicsSim
+./spinoza
 ```
 
 The output will display vector operations, field mappings, and numerical calculations.
