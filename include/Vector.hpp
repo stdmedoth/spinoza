@@ -60,7 +60,7 @@ public:
         return os;
     }
 
-    int dot(const Vector &other)
+    int operator*(const Vector &other) const
     {
         int result;
         for (std::size_t i = 0; i < N; i++)
@@ -68,21 +68,6 @@ public:
             result += data[i] * other[i];
         }
         return result;
-    }
-
-    int dot()
-    {
-        int result;
-        for (std::size_t i = 0; i < N; i++)
-        {
-            result += data[i] * data[i];
-        }
-        return result;
-    }
-
-    int getMagnitude()
-    {
-        return sqrt(dot());
     }
 };
 
