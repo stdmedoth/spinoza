@@ -11,11 +11,13 @@ The project is structured as follows:
 │
 ├── /include
 │   ├── Vector.hpp           # Definition of the Vector class
-│   └── VectorField.h        # Definition of the VectorField class
+│   ├── VectorField.h        # Definition of the VectorField class
+│   ├── Function.h           # Definition of the Function class (for numerical methods)
 │
 ├── /src
 │   ├── Vector.cpp           # Implementation of the Vector class
 │   ├── VectorField.cpp      # Implementation of the VectorField class
+│   ├── Function.cpp         # Implementation of numerical methods (derivatives and integrals)
 │   └── main.cpp             # Main function
 │
 ├── CMakeLists.txt           # CMake configuration file
@@ -27,9 +29,31 @@ The project is structured as follows:
 
 - **Vector.hpp**: Contains the definition of the `Vector` class, which represents a vector in an `N`-dimensional space.
 - **VectorField.h**: Contains the definition of the `VectorField` class, which stores multiple vectors associated with points in space.
+- **Function.h**: Defines the `Function` class, which includes numerical methods such as derivatives and integrals.
 - **Vector.cpp**: Implementation of the `Vector` class, with methods for vector manipulation.
 - **VectorField.cpp**: Implementation of the `VectorField` class, with methods for manipulating vector fields.
+- **Function.cpp**: Implements numerical methods, including differentiation and integration using Euler's method.
 - **main.cpp**: Test code that creates a vector field and prints the field.
+
+## Numerical Methods Used
+
+This project implements basic numerical techniques for differentiation and integration.
+
+### **Derivative Calculation**
+
+The derivative of a function at a discrete set of points is approximated using:
+
+\[ f'(x_i) \approx \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} \]
+
+This method is implemented in the `Function` class, where the difference between adjacent values is computed to estimate the rate of change.
+
+### **Integral Calculation using Euler's Method**
+
+The integral is computed using Euler’s method, which approximates the cumulative sum of function values over discrete intervals:
+
+\[ I_{n+1} = I_n + f(x_n) \cdot h \]
+
+where \( h = x_{n+1} - x_n \) is the step size. This is similar to the rectangular integration method and provides a straightforward numerical approach to estimating integrals.
 
 ## Prerequisites
 
@@ -116,3 +140,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Enjoy the project and feel free to make improvements or experiment with new features!**
+
