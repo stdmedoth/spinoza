@@ -1,24 +1,22 @@
-# Vector Field Project
+# Spinoza - Math & Physics Simulation Project
 
-This is a C++ project simulating a vector field, using classes to represent vectors and vector fields. The project does not use any external libraries except the standard C++ library. The goal is to demonstrate the creation of a vector field, vector manipulation, and printing the field.
+This is a C++ project for mathematical and physics simulations, providing tools for vector operations, differentiation, and integration using Euler's method. The project is built with pure C++ and does not rely on external libraries beyond the standard C++ library.
 
 ## Project Structure
 
-The project is structured as follows:
-
 ```
-/VectorFieldProject
+/spinoza
 │
 ├── /include
 │   ├── Vector.hpp           # Definition of the Vector class
 │   ├── VectorField.h        # Definition of the VectorField class
-│   ├── Function.h           # Definition of the Function class (for numerical methods)
+│   ├── Function.h           # Definition of the Function class (for differentiation & integration)
 │
 ├── /src
 │   ├── Vector.cpp           # Implementation of the Vector class
 │   ├── VectorField.cpp      # Implementation of the VectorField class
-│   ├── Function.cpp         # Implementation of numerical methods (derivatives and integrals)
-│   └── main.cpp             # Main function
+│   ├── Function.cpp         # Implementation of Function class
+│   └── main.cpp             # Main function with example simulations
 │
 ├── CMakeLists.txt           # CMake configuration file
 ├── README.md                # This file
@@ -27,37 +25,17 @@ The project is structured as follows:
 
 ### File Descriptions
 
-- **Vector.hpp**: Contains the definition of the `Vector` class, which represents a vector in an `N`-dimensional space.
-- **VectorField.h**: Contains the definition of the `VectorField` class, which stores multiple vectors associated with points in space.
-- **Function.h**: Defines the `Function` class, which includes numerical methods such as derivatives and integrals.
-- **Vector.cpp**: Implementation of the `Vector` class, with methods for vector manipulation.
-- **VectorField.cpp**: Implementation of the `VectorField` class, with methods for manipulating vector fields.
-- **Function.cpp**: Implements numerical methods, including differentiation and integration using Euler's method.
-- **main.cpp**: Test code that creates a vector field and prints the field.
-
-## Numerical Methods Used
-
-This project implements basic numerical techniques for differentiation and integration.
-
-### **Derivative Calculation**
-
-The derivative of a function at a discrete set of points is approximated using:
-
-\[ f'(x_i) \approx \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} \]
-
-This method is implemented in the `Function` class, where the difference between adjacent values is computed to estimate the rate of change.
-
-### **Integral Calculation using Euler's Method**
-
-The integral is computed using Euler’s method, which approximates the cumulative sum of function values over discrete intervals:
-
-\[ I_{n+1} = I_n + f(x_n) \cdot h \]
-
-where \( h = x_{n+1} - x_n \) is the step size. This is similar to the rectangular integration method and provides a straightforward numerical approach to estimating integrals.
+- **Vector.hpp**: Defines the `Vector` class for N-dimensional vector operations.
+- **VectorField.h**: Defines the `VectorField` class for handling vector fields.
+- **Function.h**: Implements differentiation and integration methods using Euler’s approach.
+- **Vector.cpp**: Implements vector operations.
+- **VectorField.cpp**: Implements vector field operations.
+- **Function.cpp**: Implements numerical differentiation and integration.
+- **main.cpp**: Contains test simulations demonstrating the capabilities of the project.
 
 ## Prerequisites
 
-This project uses CMake as the build system. Make sure you have CMake installed on your system. You can install CMake using the following commands:
+Ensure you have CMake installed:
 
 ### Ubuntu/Debian:
 ```bash
@@ -72,66 +50,54 @@ brew install cmake
 ## Compilation
 
 1. **Clone the repository:**
-   If you don't have the repository on your machine, clone it with the command:
    ```bash
    git clone https://your-repository.git
-   cd VectorFieldProject
+   cd MathPhysicsSim
    ```
 
-2. **Create the build directory:**
-   Create a `build` directory to store the build files:
+2. **Create a build directory:**
    ```bash
    mkdir build
    cd build
    ```
 
 3. **Generate build files with CMake:**
-   Run CMake to generate the necessary build files:
    ```bash
    cmake ..
    ```
 
 4. **Build the project:**
-   Compile the project using `make`:
    ```bash
    make
    ```
+   This will generate the executable `MathPhysicsSim` in the `build` directory.
 
-   This will generate the executable `VectorFieldProject` in the `build` directory.
+## Running Simulations
 
-## Running the Program
-
-To run the program, use the following command from the `build` directory:
-
+Execute the program with:
 ```bash
-./VectorFieldProject
+./MathPhysicsSim
 ```
 
-The program will print the vector field, where each point is associated with a vector.
+The output will display vector operations, field mappings, and numerical calculations.
 
-## How it works
+## Features
 
-The code creates a 3-dimensional vector field with 4 points, where each point has an associated vector. The vector field is printed with the points and their respective vectors.
-
-### Sample output:
-```
-{
-  [0, 0, 0] -> [1, 1, 1]
-  [1, 0, 0] -> [0, 1, -1]
-  [0, 1, 0] -> [-1, 0, 1]
-  [0, 0, 1] -> [1, -1, 0]
-}
-```
+✔ Vector operations in N-dimensional space  
+✔ Simulation of vector fields  
+✔ Numerical differentiation using Euler's method  
+✔ Numerical integration using Euler's method  
+✔ Expandable framework for further simulations  
 
 ## Contributions
 
-Feel free to contribute to the project! If you find a bug or would like to improve the code, feel free to fork the repository and submit a pull request.
+Contributions are welcome! Feel free to fork the repository, add new features, or improve existing code.
 
 1. Fork this repository.
-2. Create a branch for your feature or fix: `git checkout -b my-feature`.
-3. Commit your changes: `git commit -am 'Adding my feature'`.
-4. Push to the branch: `git push origin my-feature`.
-5. Open a pull request to the main repository.
+2. Create a branch: `git checkout -b my-feature`.
+3. Commit changes: `git commit -am 'Adding my feature'`.
+4. Push to branch: `git push origin my-feature`.
+5. Open a pull request.
 
 ## License
 
@@ -139,5 +105,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Enjoy the project and feel free to make improvements or experiment with new features!**
+🚀 **Enjoy exploring mathematical and physics simulations!**
 
