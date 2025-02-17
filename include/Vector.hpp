@@ -13,14 +13,21 @@ private:
 
 public:
     Vector() { data.fill(T(0)); }
-    Vector(const std::array<T, N> &values) { data = values; }
+
+    Vector(const std::array<T, N> &values)
+    {
+        data = values;
+    }
 
     T &operator[](std::size_t i)
     {
         return data[i];
     }
 
-    const T &operator[](std::size_t i) const { return data[i]; }
+    const T &operator[](std::size_t i) const
+    {
+        return data[i];
+    }
 
     void setPoint(const std::array<T, N> &values) { data = values; }
 
@@ -35,6 +42,16 @@ public:
         }
 
         return result;
+    }
+
+    Vector &operator+=(Vector &other)
+    {
+        for (std::size_t i = 0; i < N; i++)
+        {
+            data[i] += other[i];
+        }
+
+        return *this;
     }
 
     Vector operator-(const Vector &other) const

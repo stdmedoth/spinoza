@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.js": "javascript",
         "iosfwd": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -47,6 +49,15 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "ctime": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "map": "cpp",
+        "ratio": "cpp",
+        "mutex": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "cinttypes": "cpp"
     }
 }
