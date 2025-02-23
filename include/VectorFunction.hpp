@@ -14,13 +14,13 @@ protected:
     VectorSpace<T, M, N> image;
 
 public:
-    Function()
+    VectorFunction()
     {
         this->domain = VectorSpace<T, M, N>();
         this->image = VectorSpace<T, M, N>();
     }
 
-    Function(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
+    VectorFunction(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
     {
         this->domain = domain;
         this->image = image;
@@ -46,7 +46,7 @@ public:
         this->image = image;
     }
 
-    Function operator+(Function &other)
+    VectorFunction operator+(VectorFunction &other)
     {
         VectorSpace<T, M, N> result_image{};
         VectorSpace<T, M, N> other_image = other.getImage();
@@ -59,10 +59,10 @@ public:
             }
         }
 
-        return Function(result_image);
+        return VectorFunction(result_image);
     }
 
-    Function operator+(Vector<T, M> vector)
+    VectorFunction operator+(Vector<T, M> vector)
     {
         VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
@@ -76,10 +76,10 @@ public:
             }
         }
 
-        return Function(this->domain, result_image);
+        return VectorFunction(this->domain, result_image);
     }
 
-    Function &operator+=(Function &other)
+    VectorFunction &operator+=(VectorFunction &other)
     {
         VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> other_image = other.getImage();
@@ -96,7 +96,7 @@ public:
         return *this;
     }
 
-    Function &operator=(Vector<T, N> other)
+    VectorFunction &operator=(Vector<T, N> other)
     {
         for (std::size_t a = 0; a < N; a++)
         {
@@ -106,7 +106,7 @@ public:
         return *this;
     }
 
-    Function operator-(Function &other)
+    VectorFunction operator-(VectorFunction &other)
     {
         VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
@@ -121,10 +121,10 @@ public:
             }
         }
 
-        return Function(this->domain, result_image);
+        return VectorFunction(this->domain, result_image);
     }
 
-    Function operator*(Function &other)
+    VectorFunction operator*(VectorFunction &other)
     {
         VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
@@ -139,10 +139,10 @@ public:
             }
         }
 
-        return Function(this->domain, result_image);
+        return VectorFunction(this->domain, result_image);
     }
 
-    Function operator*(double &other)
+    VectorFunction operator*(double &other)
     {
         VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
@@ -156,7 +156,7 @@ public:
             }
         }
 
-        return Function(this->domain, result_image);
+        return VectorFunction(this->domain, result_image);
     }
 
     Vector<T, N> &operator[](std::size_t index)
@@ -164,11 +164,11 @@ public:
         return image[index];
     }
 
-    Function<T, M, N> derivative()
+    VectorFunction<T, M, N> derivative()
     {
     }
 
-    Function<T, M, N> integral(std::size_t a, std::size_t b)
+    VectorFunction<T, M, N> integral(std::size_t a, std::size_t b)
     {
     }
 };

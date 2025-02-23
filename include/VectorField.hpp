@@ -28,7 +28,6 @@ public:
 
         for (std::size_t m = 0; m < N; m++)
         {
-            result_domain[m] = this->domain[m];
 
             for (std::size_t dim = 0; dim < M; dim++)
             {

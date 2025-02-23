@@ -71,12 +71,13 @@ g++ -std=c++17 -I./include my_program.cpp -o my_program
 
 ## 🧑‍💻 Usage Example
 
-Here is a simple example demonstrating how to use Spinoza for field simulations:
+Here's a better example of how to use Spinoza for field simulations:
 
 ```cpp
 #include <iostream>
-#include "ScalarField.hpp"
 #include "Field.hpp"
+#include "VectorField.hpp"
+#include "ScalarField.hpp"
 #include "VectorSpace.hpp"
 
 int main()
@@ -84,8 +85,9 @@ int main()
     // Define a 3D vector space with 10,000 elements
     VectorSpace<double, 3, 10000> domain;
     Field<double, 10000> image;
+    VectorSpace<double, 3, 10000> vector_image;
 
-    // Initialize the vector field and image values
+    // Initialize the scalar field and vector field values
     for (int i = 0; i < 10000; i++)
     {
         double x = 0.001 * i;
@@ -93,25 +95,23 @@ int main()
         double z = 0.003 * i;
         domain[i] = Vector<double, 3>({x, y, z});
         image[i] = x + y + z;
+        vector_image[i] = Vector<double, 3>({x, y, z});
     }
 
-    // Create a scalar field for acceleration and compute the velocity field
-    ScalarField<double, 3, 10000> acceleration(domain, image);
-    ScalarField<double, 3, 10000> velocity = acceleration.integral(0, 10000);
-    
-    // Update the velocity field image and set it back
-    image = velocity.getImage();
-    image = image + 10.0;
-    velocity.setImage(image);
-
-    // Compute the position field from the velocity field
-    ScalarField<double, 3, 10000> position = velocity.integral(0, 10000);
-    image = position.getImage();
-
-    // Output the results
+    // Create a scalar field (temperature) and output its image
+    ScalarField<double, 3, 10000> temperature(domain, image);
+    image = temperature.getImage();
     for (int i = 0; i < 10000; i++)
     {
         std::cout << image[i] << "\n";
+    }
+
+    // Create a vector field (position) and output its image
+    VectorField<double, 3, 10000> position(domain, vector_image);
+    vector_image = position.getImage();
+    for (int i = 0; i < 10000; i++)
+    {
+        std::cout << vector_image[i] << "\n";
     }
 
     return 0;
@@ -120,10 +120,16 @@ int main()
 
 ### Explanation:
 
-- `VectorSpace`: Represents a space with vectors.
-- `Field`: Represents the image of generic field.
-- `ScalarField`: Represents a field where the value at each point is a scalar (used for acceleration, velocity, position).
-- `integral`: Computes the integral of the field using Euler’s method.
+- **`VectorSpace`**: Represents a space with vectors.
+- **`Field`**: Represents the image of a scalar or vector field.
+- **`ScalarField`**: Represents a scalar field where the value at each point is a scalar (used for temperature or other scalar quantities).
+- **`VectorField`**: Represents a vector field where the value at each point is a vector (used for position or other vector quantities).
+- **`getImage()`**: Retrieves the field values as an array.
+  
+In the example:
+
+- A scalar field `temperature` is computed and printed.
+- A vector field `position` is computed and printed.
 
 ## 📂 Project Structure
 
