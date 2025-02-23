@@ -24,7 +24,6 @@ public:
 
     VectorField<T, M, N> derivative()
     {
-        VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
 
         for (std::size_t m = 0; m < N; m++)
@@ -37,24 +36,21 @@ public:
             }
         }
 
-        return VectorField<T, M, N>(result_domain, result_image);
+        return VectorField<T, M, N>(this->domain, result_image);
     }
 
     VectorField<T, M, N> integral(std::size_t a, std::size_t b)
     {
-        VectorSpace<T, M, N> result_domain{};
         VectorSpace<T, M, N> result_image{};
 
         for (std::size_t i = a; i < b; i++)
         {
-            result_domain[i] = this->domain[i];
-
             for (std::size_t j = 0; j < M; j++)
             {
                 result_image[i + 1][j] = result_image[i][j] + this->image[i][j] * (this->domain[i + 1][j] - this->domain[i][j]);
             }
         }
-        return VectorField<T, M, N>(result_domain, result_image);
+        return VectorField<T, M, N>(this->domain, result_image);
     }
 
     Vector<T, N> &operator[](std::size_t index)

@@ -79,11 +79,24 @@ public:
 
     int operator*(const Vector &other) const
     {
-        int result;
+        int result = 0;
         for (std::size_t i = 0; i < N; i++)
         {
             result += data[i] * other[i];
         }
+        return result;
+    }
+
+    double magnitude()
+    {
+        double result = 0;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result += data[i] * data[i];
+        }
+
+        result = sqrt(result);
+
         return result;
     }
 };

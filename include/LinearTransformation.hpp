@@ -4,10 +4,10 @@
 #include <array>
 #include <cmath>
 
-#include "Function.hpp"
+#include "VectorFunction.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
-class LinearTransformation : public Function<T, M, N>
+class LinearTransformation : public VectorFunction<T, M, N>
 {
 public:
     LinearTransformation()

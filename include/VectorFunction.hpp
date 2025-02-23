@@ -6,7 +6,7 @@
 #include "VectorSpace.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
-class Function
+class VectorFunction
 {
 
 protected:
