@@ -36,9 +36,9 @@ int main()
                 continue;
 
             double acceleration = power / (image[i][i2] * mass);
-            double dragForce = (1.0 / (2 * mass)) * c * ro * a * image[i][i2] * image[i][i2];
+            double dragAcceleration = 0.5 * c * ro * a * image[i][i2] * image[i][i2] / mass;
 
-            image[i + 1][i2] = image[i][i2] + acceleration * dt - dragForce * dt;
+            image[i + 1][i2] = image[i][i2] + acceleration * dt - dragAcceleration * dt;
         }
     }
 
