@@ -3,144 +3,94 @@
 
 #include <array>
 #include <cmath>
-#include "Vector.hpp"
+#include "VectorSpace.hpp"
 
-template <typename T, std::size_t M, std::size_t N, std::size_t O>
+template <typename T, std::size_t M, std::size_t N>
 class Function
 {
 
-private:
-public:
-    std::array<Vector<T, M>, O> domain;
-    std::array<Vector<T, N>, O> image;
+protected:
+    VectorSpace<T, M, N> domain;
+    VectorSpace<T, M, N> image;
 
+public:
     Function()
     {
-        Vector<T, M> _domain;
-        Vector<T, N> _image;
-
-        domain.fill(_domain);
-        image.fill(_image);
+        this->domain = VectorSpace<T, M, N>();
+        this->image = VectorSpace<T, M, N>();
     }
 
-    Function(std::array<Vector<T, M>, O> domain, std::array<Vector<T, N>, O> image) : domain(domain), image(image)
+    Function(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
     {
+        this->domain = domain;
+        this->image = image;
     }
 
-    Function<T, M, N, O> derivative()
+    VectorSpace<T, M, N> &getDomain()
     {
-        std::array<Vector<T, M>, O> result_domain{};
-        std::array<Vector<T, N>, O> result_image{};
-
-        for (std::size_t m = 0; m < O - 1; m++)
-        {
-            result_domain[m] = domain[m];
-            
-            for (std::size_t dim = 0; dim < M; dim++)
-            {
-                result_image[m + 1][dim] = (image[m + 1][dim] - image[m][dim]) / (domain[m + 1][dim] - domain[m][dim]);
-            }
-        }
-
-        return Function<T, M, N, O>(result_domain, result_image);
+        return this->domain;
     }
 
-    Function<T, M, M*N, O> integral(std::size_t a, std::size_t b)
+    VectorSpace<T, M, N> &getImage()
     {
-        std::array<Vector<T, M>, O> result_domain{};
-        std::array<Vector<T, M*N>, O> result_image{};
-
-        for (std::size_t i = a; i < b - 1; i++)
-        {
-            result_domain[i] = domain[i];
-
-            std::size_t pos = 0;
-            for (std::size_t j = 0; j < M; j++)
-            {
-                for (std::size_t k = 0; k < N; k++)
-                {
-                    result_image[i + 1][pos] = result_image[i][pos] + image[i][k] * (domain[i + 1][j] - domain[i][j]);
-                    pos++; 
-                    //std::cout << pos << "\n";
-                }
-            }
-        }
-        return Function<T, M, M*N, O>(result_domain, result_image);
+        return this->image;
     }
 
-    std::array<Vector<T, M>, O> &getDomain()
+    void setDomain(VectorSpace<T, M, N> &domain)
     {
-        return domain;
+        this->domain = domain;
     }
 
-    std::array<Vector<T, N>, O> &getImage()
+    void setImage(VectorSpace<T, M, N> &image)
     {
-        return image;
-    }
-
-    void setDomain(std::array<Vector<T, M>, O> &domain)
-    {
-        domain(domain);
-    }
-
-    void setImage(std::array<Vector<T, N>, O> &image)
-    {
-        image(image);
+        this->image = image;
     }
 
     Function operator+(Function &other)
     {
-        std::array<Vector<T, M>, O> result_image{};
-        std::array<Vector<T, N>, O> other_image = other.getImage();
+        VectorSpace<T, M, N> result_image{};
+        VectorSpace<T, M, N> other_image = other.getImage();
 
-        other_image = other.getImage();
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
             for (std::size_t d = 0; d < M; d++)
             {
-                result_image[a][d] = image[a][d] + other_image[a][d];
+                result_image[a][d] = this->image[a][d] + other_image[a][d];
             }
         }
 
-        return Function(domain, result_image);
+        return Function(result_image);
     }
 
-    Function operator+(Vector<T, N> vector)
+    Function operator+(Vector<T, M> vector)
     {
-        std::array<Vector<T, N>, O> result_image{};
+        VectorSpace<T, M, N> result_domain{};
+        VectorSpace<T, M, N> result_image{};
 
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
-            for (std::size_t d = 0; d < N; d++)
+            result_domain[a] = this->domain[a];
+            for (std::size_t d = 0; d < M; d++)
             {
-                result_image[a][d] = image[a][d] + vector[d];
+                result_image[a][d] = this->image[a][d] + vector[d];
             }
         }
 
-        return Function(domain, result_image);
+        return Function(this->domain, result_image);
     }
 
     Function &operator+=(Function &other)
     {
-        std::array<Vector<T, N>, O> other_image = other.getImage();
+        VectorSpace<T, M, N> result_domain{};
+        VectorSpace<T, M, N> other_image = other.getImage();
 
-        other_image = other.getImage();
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
-            for (std::size_t d = 0; d < N; d++)
+            result_domain[a] = this->domain[a];
+            for (std::size_t d = 0; d < M; d++)
             {
-                image[a][d] += other_image[a][d];
+                this->image[a][d] += other_image[a][d];
             }
-        }
-
-        return *this;
-    }
-
-    Function &operator+=(Vector<T, N> &vector)
-    {
-        for (std::size_t a = 0; a < O; a++)
-        {
-            image[a] += vector;
         }
 
         return *this;
@@ -148,9 +98,9 @@ public:
 
     Function &operator=(Vector<T, N> other)
     {
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
-            image[a] = other;
+            this->image[a] = other;
         }
 
         return *this;
@@ -158,40 +108,68 @@ public:
 
     Function operator-(Function &other)
     {
-        std::array<Vector<T, M>, O> result_image{};
-        std::array<Vector<T, N>, O> other_image = other.getImage();
+        VectorSpace<T, M, N> result_domain{};
+        VectorSpace<T, M, N> result_image{};
+        VectorSpace<T, M, N> other_image = other.getImage();
 
-        other_image = other.getImage();
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
-            for (std::size_t d = 0; d < N; d++)
+            result_domain[a] = this->domain[a];
+            for (std::size_t d = 0; d < M; d++)
             {
-                result_image[a][d] = image[a][d] - other_image[a][d];
+                result_image[a] = this->image[a] - other_image[a];
             }
         }
 
-        return Function(domain, result_image);
+        return Function(this->domain, result_image);
     }
 
     Function operator*(Function &other)
     {
-        std::array<Vector<T, M>, O> result_image{};
-        std::array<Vector<T, N>, O> other_image = other.getImage();
+        VectorSpace<T, M, N> result_domain{};
+        VectorSpace<T, M, N> result_image{};
+        VectorSpace<T, M, N> other_image = other.getImage();
 
-        for (std::size_t a = 0; a < O; a++)
+        for (std::size_t a = 0; a < N; a++)
         {
-            for (std::size_t d = 0; d < N; d++)
+            result_domain[a] = this->domain[a];
+            for (std::size_t d = 0; d < M; d++)
             {
-                result_image[a][d] = image[a][d] * other_image[a][d];
+                result_image[a][d] = this->image[a][d] * other_image[a][d];
             }
         }
 
-        return Function(domain, result_image);
+        return Function(this->domain, result_image);
+    }
+
+    Function operator*(double &other)
+    {
+        VectorSpace<T, M, N> result_domain{};
+        VectorSpace<T, M, N> result_image{};
+
+        for (std::size_t a = 0; a < N; a++)
+        {
+            result_domain[a] = this->domain[a];
+            for (std::size_t d = 0; d < M; d++)
+            {
+                result_image[a][d] = this->image[a][d] * other;
+            }
+        }
+
+        return Function(this->domain, result_image);
     }
 
     Vector<T, N> &operator[](std::size_t index)
     {
         return image[index];
+    }
+
+    Function<T, M, N> derivative()
+    {
+    }
+
+    Function<T, M, N> integral(std::size_t a, std::size_t b)
+    {
     }
 };
 

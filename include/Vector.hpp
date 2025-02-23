@@ -8,7 +8,7 @@
 template <typename T, std::size_t N>
 class Vector
 {
-private:
+protected:
     std::array<T, N> data;
 
 public:
