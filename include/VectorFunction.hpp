@@ -1,5 +1,5 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef VECTORFUNCTION_H
+#define VECTORFUNCTION_H
 
 #include <array>
 #include <cmath>

@@ -1,5 +1,5 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef SCALARFUNCTION_H
+#define SCALARFUNCTION_H
 
 #include <array>
 #include <cmath>
