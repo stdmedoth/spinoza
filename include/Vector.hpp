@@ -87,6 +87,59 @@ public:
         return result;
     }
 
+    Vector operator*(const double scalar) const
+    {
+        Vector<T, N> result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result[i] += data[i] * scalar;
+        }
+        return result;
+    }
+
+    Vector operator*(const int scalar) const
+    {
+        Vector<T, N> result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result[i] += data[i] * scalar;
+        }
+        return result;
+    }
+
+    Vector operator/(const int scalar) const
+    {
+        Vector<T, N> result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result[i] = data[i] / scalar;
+        }
+        return result;
+    }
+
+    Vector operator/(const double scalar) const
+    {
+        Vector<T, N> result;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            result[i] = data[i] / scalar;
+        }
+        return result;
+    }
+
+    Vector reciprocal() const
+    {
+        Vector<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            if (data[i] != 0)
+            {
+                result[i] = 1.0 / data[i];
+            }
+        }
+        return result;
+    }
+
     double magnitude()
     {
         double result = 0;

@@ -1,55 +1,55 @@
-#ifndef VECTORFUNCTION_H
-#define VECTORFUNCTION_H
+#ifndef VECTORFUNCTION_HPP
+#define VECTORFUNCTION_HPP
 
 #include <array>
 #include <cmath>
-#include "VectorSpace.hpp"
+#include "Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class VectorFunction
 {
 
 protected:
-    VectorSpace<T, M, N> domain;
-    VectorSpace<T, M, N> image;
+    Space<T, M, N> domain;
+    Space<T, M, N> image;
 
 public:
     VectorFunction()
     {
-        this->domain = VectorSpace<T, M, N>();
-        this->image = VectorSpace<T, M, N>();
+        this->domain = Space<T, M, N>();
+        this->image = Space<T, M, N>();
     }
 
-    VectorFunction(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
+    VectorFunction(const Space<T, M, N> &domain, const Space<T, M, N> &image)
     {
         this->domain = domain;
         this->image = image;
     }
 
-    VectorSpace<T, M, N> &getDomain()
+    Space<T, M, N> &getDomain()
     {
         return this->domain;
     }
 
-    VectorSpace<T, M, N> &getImage()
+    Space<T, M, N> &getImage()
     {
         return this->image;
     }
 
-    void setDomain(VectorSpace<T, M, N> &domain)
+    void setDomain(Space<T, M, N> &domain)
     {
         this->domain = domain;
     }
 
-    void setImage(VectorSpace<T, M, N> &image)
+    void setImage(Space<T, M, N> &image)
     {
         this->image = image;
     }
 
     VectorFunction operator+(VectorFunction &other)
     {
-        VectorSpace<T, M, N> result_image{};
-        VectorSpace<T, M, N> other_image = other.getImage();
+        Space<T, M, N> result_image{};
+        Space<T, M, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -64,8 +64,8 @@ public:
 
     VectorFunction operator+(Vector<T, M> vector)
     {
-        VectorSpace<T, M, N> result_domain{};
-        VectorSpace<T, M, N> result_image{};
+        Space<T, M, N> result_domain{};
+        Space<T, M, N> result_image{};
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -81,8 +81,8 @@ public:
 
     VectorFunction &operator+=(VectorFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        VectorSpace<T, M, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, M, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -108,9 +108,9 @@ public:
 
     VectorFunction operator-(VectorFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        VectorSpace<T, M, N> result_image{};
-        VectorSpace<T, M, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, M, N> result_image{};
+        Space<T, M, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -126,9 +126,9 @@ public:
 
     VectorFunction operator*(VectorFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        VectorSpace<T, M, N> result_image{};
-        VectorSpace<T, M, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, M, N> result_image{};
+        Space<T, M, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -144,8 +144,8 @@ public:
 
     VectorFunction operator*(double &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        VectorSpace<T, M, N> result_image{};
+        Space<T, M, N> result_domain{};
+        Space<T, M, N> result_image{};
 
         for (std::size_t a = 0; a < N; a++)
         {

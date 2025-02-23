@@ -1,25 +1,23 @@
-#ifndef VECTORSPACE_H
-#define VECTORSPACE_H
+#ifndef SPACE_HPP
+#define SPACE_HPP
 
 #include <array>
 #include <cmath>
 #include "Vector.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
-class VectorSpace
+class Space
 {
 protected:
     std::array<Vector<T, M>, N> subset;
 
 public:
-    VectorSpace()
+    Space()
     {
-        Vector<T, M> _subset;
-
-        subset.fill(_subset);
+        subset.fill(Vector<T, M>());
     }
 
-    VectorSpace(std::array<Vector<T, M>, N> subset) : subset(subset)
+    Space(std::array<Vector<T, M>, N> subset) : subset(subset)
     {
     }
 
@@ -33,7 +31,7 @@ public:
         subset = subset_values;
     }
 
-    VectorSpace operator+(VectorSpace &other)
+    Space operator+(Space &other)
     {
         std::array<Vector<T, M>, N> result_subset{};
         std::array<Vector<T, M>, N> other_subset = other.getSubset();
@@ -46,10 +44,10 @@ public:
             }
         }
 
-        return VectorSpace(result_subset);
+        return Space(result_subset);
     }
 
-    VectorSpace operator+(Vector<T, M> vector)
+    Space operator+(Vector<T, M> vector)
     {
         std::array<Vector<T, M>, N> result_subset{};
 
@@ -61,10 +59,10 @@ public:
             }
         }
 
-        return VectorSpace(result_subset);
+        return Space(result_subset);
     }
 
-    VectorSpace &operator+=(VectorSpace &other)
+    Space &operator+=(Space &other)
     {
         std::array<Vector<T, M>, N> other_subset = other.getSubset();
 
@@ -79,7 +77,7 @@ public:
         return *this;
     }
 
-    VectorSpace &operator+=(Vector<T, M> &vector)
+    Space &operator+=(Vector<T, M> &vector)
     {
         for (std::size_t a = 0; a < N; a++)
         {
@@ -89,7 +87,7 @@ public:
         return *this;
     }
 
-    VectorSpace &operator=(Vector<T, M> other)
+    Space &operator=(Vector<T, M> other)
     {
         for (std::size_t a = 0; a < N; a++)
         {
@@ -99,7 +97,7 @@ public:
         return *this;
     }
 
-    VectorSpace operator-(VectorSpace &other)
+    Space operator-(Space &other)
     {
         std::array<T, N> result_subset{};
         std::array<T, N> other_subset = other.getImage();
@@ -112,10 +110,10 @@ public:
             }
         }
 
-        return VectorSpace(result_subset);
+        return Space(result_subset);
     }
 
-    VectorSpace operator*(VectorSpace &other)
+    Space operator*(Space &other)
     {
         std::array<Vector<T, M>, N> result_subset{};
         std::array<Vector<T, M>, N> other_subset = other.getSubset();
@@ -128,10 +126,10 @@ public:
             }
         }
 
-        return VectorSpace(result_subset);
+        return Space(result_subset);
     }
 
-    VectorSpace operator*(double other)
+    Space operator*(double other)
     {
         std::array<Vector<T, M>, N> result_subset{};
 
@@ -143,7 +141,7 @@ public:
             }
         }
 
-        return VectorSpace(result_subset);
+        return Space(result_subset);
     }
 
     Vector<T, M> &operator[](std::size_t index)

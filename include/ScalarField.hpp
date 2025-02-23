@@ -4,8 +4,8 @@
 #include <array>
 #include <cmath>
 
-#include "Field.hpp"
 #include "ScalarFunction.hpp"
+#include "Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class ScalarField : public ScalarFunction<T, M, N>
@@ -15,11 +15,11 @@ protected:
 public:
     ScalarField()
     {
-        this->domain = VectorSpace<T, M, N>();
-        this->image = Field<T, N>();
+        this->domain = Space<T, M, N>();
+        this->image = Space<T, 1, N>();
     }
 
-    ScalarField(const VectorSpace<T, M, N> &domain, const Field<T, N> &image)
+    ScalarField(const Space<T, M, N> &domain, const Space<T, 1, N> &image)
     {
         this->domain = domain;
         this->image = image;
@@ -27,7 +27,7 @@ public:
 
     ScalarField<T, M, N> derivative()
     {
-        Field<T, N> result_image{};
+        Space<T, 1, N> result_image{};
 
         for (std::size_t m = 0; m < M; m++)
         {
@@ -39,7 +39,7 @@ public:
 
     ScalarField<T, M, N> integral(std::size_t a, std::size_t b)
     {
-        Field<T, N> result_image{};
+        Space<T, 1, N> result_image{};
 
         for (std::size_t i = a; i < b; i++)
         {

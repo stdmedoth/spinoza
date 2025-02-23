@@ -1,56 +1,55 @@
-#ifndef SCALARFUNCTION_H
-#define SCALARFUNCTION_H
+#ifndef SCALARFUNCTION_HPP
+#define SCALARFUNCTION_HPP
 
 #include <array>
 #include <cmath>
-#include "VectorSpace.hpp"
-#include "Field.hpp"
+#include "Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class ScalarFunction
 {
 
 protected:
-    VectorSpace<T, M, N> domain;
-    Field<T, N> image;
+    Space<T, M, N> domain;
+    Space<T, 1, N> image;
 
 public:
     ScalarFunction()
     {
-        this->domain = VectorSpace<T, M, N>();
-        this->image = Field<T, N>();
+        this->domain = Space<T, M, N>();
+        this->image = Space<T, 1, N>();
     }
 
-    ScalarFunction(const VectorSpace<T, M, N> &domain, const Field<T, N> &image)
+    ScalarFunction(const Space<T, M, N> &domain, const Space<T, 1, N> &image)
     {
         this->domain = domain;
         this->image = image;
     }
 
-    VectorSpace<T, M, N> &getDomain()
+    Space<T, M, N> &getDomain()
     {
         return this->domain;
     }
 
-    Field<T, N> &getImage()
+    Space<T, 1, N> &getImage()
     {
         return this->image;
     }
 
-    void setDomain(VectorSpace<T, M, N> &domain)
+    void setDomain(Space<T, M, N> &domain)
     {
         this->domain = domain;
     }
 
-    void setImage(Field<T, N> &image)
+    void setImage(Space<T, 1, N> &image)
     {
         this->image = image;
     }
 
     ScalarFunction operator+(ScalarFunction &other)
     {
-        Field<T, N> result_image{};
-        Field<T, N> other_image = other.getImage();
+        Space<T, 1, N> result_image{};
+        Space<T, 1, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -65,8 +64,8 @@ public:
 
     ScalarFunction operator+(T scalar)
     {
-        VectorSpace<T, M, N> result_domain{};
-        Field<T, N> result_image{};
+        Space<T, M, N> result_domain{};
+        Space<T, 1, N> result_image{};
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -79,8 +78,8 @@ public:
 
     ScalarFunction &operator+=(ScalarFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        Field<T, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, 1, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -103,9 +102,9 @@ public:
 
     ScalarFunction operator-(ScalarFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        Field<T, N> result_image{};
-        Field<T, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, 1, N> result_image{};
+        Space<T, 1, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -118,9 +117,9 @@ public:
 
     ScalarFunction operator*(ScalarFunction &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        Field<T, N> result_image{};
-        VectorSpace<T, M, N> other_image = other.getImage();
+        Space<T, M, N> result_domain{};
+        Space<T, 1, N> result_image{};
+        Space<T, M, N> other_image = other.getImage();
 
         for (std::size_t a = 0; a < N; a++)
         {
@@ -133,8 +132,8 @@ public:
 
     ScalarFunction operator*(double &other)
     {
-        VectorSpace<T, M, N> result_domain{};
-        Field<T, N> result_image{};
+        Space<T, M, N> result_domain{};
+        Space<T, 1, N> result_image{};
 
         for (std::size_t a = 0; a < N; a++)
         {

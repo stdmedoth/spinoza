@@ -12,11 +12,11 @@ class LinearTransformation : public VectorFunction<T, M, N>
 public:
     LinearTransformation()
     {
-        this->domain = VectorSpace<T, M, N>();
-        this->image = VectorSpace<T, M, N>();
+        this->domain = Space<T, M, N>();
+        this->image = Space<T, M, N>();
     }
 
-    LinearTransformation(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
+    LinearTransformation(const Space<T, M, N> &domain, const Space<T, M, N> &image)
     {
         this->domain = domain;
         this->image = image;

@@ -78,14 +78,14 @@ Here's a better example of how to use Spinoza for field simulations:
 #include "Field.hpp"
 #include "VectorField.hpp"
 #include "ScalarField.hpp"
-#include "VectorSpace.hpp"
+#include "Space.hpp"
 
 int main()
 {
     // Define a 3D vector space with 10,000 elements
-    VectorSpace<double, 3, 10000> domain;
+    Space<double, 3, 10000> domain;
     Field<double, 10000> image;
-    VectorSpace<double, 3, 10000> vector_image;
+    Space<double, 3, 10000> vector_image;
 
     // Initialize the scalar field and vector field values
     for (int i = 0; i < 10000; i++)
@@ -120,7 +120,7 @@ int main()
 
 ### Explanation:
 
-- **`VectorSpace`**: Represents a space with vectors.
+- **`Space`**: Represents a space with vectors.
 - **`Field`**: Represents the image of a scalar or vector field.
 - **`ScalarField`**: Represents a scalar field where the value at each point is a scalar (used for temperature or other scalar quantities).
 - **`VectorField`**: Represents a vector field where the value at each point is a vector (used for position or other vector quantities).

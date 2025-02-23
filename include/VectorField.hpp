@@ -1,9 +1,9 @@
-#ifndef VECTORFIELD_H
-#define VECTORFIELD_H
+#ifndef VECTORFIELD_HPP
+#define VECTORFIELD_HPP
 
 #include <array>
 #include <cmath>
-#include "VectorSpace.hpp"
+#include "Space.hpp"
 #include "LinearTransformation.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
@@ -12,11 +12,11 @@ class VectorField : public LinearTransformation<T, M, N>
 public:
     VectorField()
     {
-        this->domain = VectorSpace<T, M, N>();
-        this->image = VectorSpace<T, M, N>();
+        this->domain = Space<T, M, N>();
+        this->image = Space<T, M, N>();
     }
 
-    VectorField(const VectorSpace<T, M, N> &domain, const VectorSpace<T, M, N> &image)
+    VectorField(const Space<T, M, N> &domain, const Space<T, M, N> &image)
     {
         this->domain = domain;
         this->image = image;
@@ -24,7 +24,7 @@ public:
 
     VectorField<T, M, N> derivative()
     {
-        VectorSpace<T, M, N> result_image{};
+        Space<T, M, N> result_image{};
 
         for (std::size_t m = 0; m < N; m++)
         {
@@ -40,7 +40,7 @@ public:
 
     VectorField<T, M, N> integral(std::size_t a, std::size_t b)
     {
-        VectorSpace<T, M, N> result_image{};
+        Space<T, M, N> result_image{};
 
         for (std::size_t i = a; i < b; i++)
         {
