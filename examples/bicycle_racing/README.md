@@ -24,6 +24,9 @@ In this simulation, we assume that the power output is constant, and drag force 
 
 This simple model allows us to see the effect of constant power on the bicycle’s speed and position over time. In the absence of drag, the bicycle’s velocity will increase steadily, with no slowing down.
 
+![Without air](Figure_1.png)
+
+
 ### 2. **Second Simulation (bicycle_racing2.cpp)**
 
 The second simulation is more realistic, as it introduces drag force into the system. The drag force is modeled as:
@@ -47,6 +50,8 @@ In this simulation, the system behaves as follows:
 This simulation highlights the competition between the rider’s power output and the resistance from the air. Initially, the bicycle accelerates quickly, but as speed increases, the drag force grows, leading to a noticeable deceleration. Eventually, the bicycle reaches a steady velocity where the rider's power output is balanced by the drag force.
 
 By comparing the two simulations, we can better understand the impact of drag on cycling performance and how it limits the speed of a bicycle as it races.
+
+![With air](Figure_2.png)
 
 ## Folder Structure
 
