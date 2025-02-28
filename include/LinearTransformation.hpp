@@ -1,5 +1,5 @@
-#ifndef LINEARTRANSFORMATION_H
-#define LINEARTRANSFORMATION_H
+#ifndef LINEARTRANSFORMATION_HPP
+#define LINEARTRANSFORMATION_HPP
 
 #include <array>
 #include <cmath>

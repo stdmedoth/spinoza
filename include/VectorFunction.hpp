@@ -163,14 +163,6 @@ public:
     {
         return image[index];
     }
-
-    VectorFunction<T, M, N> derivative()
-    {
-    }
-
-    VectorFunction<T, M, N> integral(std::size_t a, std::size_t b)
-    {
-    }
 };
 
 #endif

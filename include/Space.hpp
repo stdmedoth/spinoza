@@ -4,6 +4,7 @@
 #include <array>
 #include <cmath>
 #include "Vector.hpp"
+#include <tuple>
 
 template <typename T, std::size_t M, std::size_t N>
 class Space
@@ -29,6 +30,26 @@ public:
     void setSubset(std::array<Vector<T, M>, N> &subset_values)
     {
         subset = subset_values;
+    }
+
+    std::tuple<std::array<std::size_t, N>, std::size_t> parametrize(Space<T, M, N> other, double precision)
+    {
+        std::size_t index = 0;
+        std::array<std::size_t, N> parameterization;
+        for (std::size_t i = 0; i < N; i++)
+        {
+            for (size_t i2 = 0; i2 < N; i2++)
+            {
+                double distance = std::abs((this->subset[i] - other[i2]).magnitude());
+                if ((distance != 0) && (distance < precision))
+                {
+                    parameterization[index] = i;
+                    index++;
+                }
+            }
+        }
+
+        return std::make_tuple(parameterization, index);
     }
 
     Space operator+(Space &other)

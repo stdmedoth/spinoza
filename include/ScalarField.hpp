@@ -1,5 +1,5 @@
-#ifndef SCALARFIELD_H
-#define SCALARFIELD_H
+#ifndef SCALARFIELD_HPP
+#define SCALARFIELD_HPP
 
 #include <array>
 #include <cmath>
