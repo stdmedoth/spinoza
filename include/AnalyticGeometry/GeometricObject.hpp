@@ -1,8 +1,8 @@
 
-#ifndef GRADIENT_HPP
-#define GRADIENT_HPP
+#ifndef GEOMETRICOBJECT_HPP
+#define GEOMETRICOBJECT_HPP
 
-#include "Space.hpp"
+#include "LinearAlgebra/Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class GeometricObject

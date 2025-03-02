@@ -2,8 +2,8 @@
 #ifndef PARTIALDERIVATIVE_HPP
 #define PARTIALDERIVATIVE_HPP
 
-#include "ScalarFunction.hpp"
-#include "Space.hpp"
+#include "Calculus/ScalarFunction.hpp"
+#include "LinearAlgebra/Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class PartialDerivative : ScalarFunction<T, M, N>

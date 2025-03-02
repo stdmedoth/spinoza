@@ -4,8 +4,8 @@
 #include <array>
 #include <cmath>
 
-#include "ScalarFunction.hpp"
-#include "Space.hpp"
+#include "Calculus/ScalarFunction.hpp"
+#include "LinearAlgebra/Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class ScalarField : public ScalarFunction<T, M, N>

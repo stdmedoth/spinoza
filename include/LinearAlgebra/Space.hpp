@@ -3,7 +3,7 @@
 
 #include <array>
 #include <cmath>
-#include "Vector.hpp"
+#include "LinearAlgebra/Vector.hpp"
 #include <tuple>
 
 template <typename T, std::size_t M, std::size_t N>

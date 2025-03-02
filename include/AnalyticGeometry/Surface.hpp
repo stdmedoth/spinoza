@@ -5,7 +5,7 @@
 #include <array>
 #include <cmath>
 
-#include "GeometricObject.hpp"
+#include "AnalyticGeometry/GeometricObject.hpp"
 
 template <typename T, std::size_t N>
 class Surface : public GeometricObject<T, 2, N>

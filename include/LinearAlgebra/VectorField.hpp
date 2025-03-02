@@ -3,8 +3,8 @@
 
 #include <array>
 #include <cmath>
-#include "Space.hpp"
-#include "LinearTransformation.hpp"
+#include "LinearAlgebra/Space.hpp"
+#include "LinearAlgebra/LinearTransformation.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class VectorField : public LinearTransformation<T, M, N>

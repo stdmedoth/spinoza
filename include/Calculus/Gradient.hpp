@@ -5,8 +5,8 @@
 #include <array>
 #include <cmath>
 
-#include "ScalarField.hpp"
-#include "Space.hpp"
+#include "LinearAlgebra/ScalarField.hpp"
+#include "LinearAlgebra/Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class Gradient : public VectorField

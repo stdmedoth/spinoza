@@ -1,16 +1,16 @@
 
-#ifndef VECTORINTEGRAL_HPP
-#define VECTORINTEGRAL_HPP
+#ifndef PATHINTEGRAL_HPP
+#define PATHINTEGRAL_HPP
 
 #include <array>
 #include <cmath>
 
-#include "VectorField.hpp"
-#include "Space.hpp"
-#include "GeometricObject.hpp"
+#include "LinearAlgebra/ScalarField.hpp"
+#include "LinearAlgebra/Space.hpp"
+#include "AnalyticGeometry/GeometricObject.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
-class VectorIntegral : public VectorField<T, M, N>
+class ScalarIntegral : public ScalarField<T, M, N>
 {
 protected:
     Space<T, M, N> f_image;
@@ -19,15 +19,15 @@ protected:
     GeometricObject<T, M, N> object;
 
 public:
-    VectorIntegral()
+    ScalarIntegral()
     {
     }
 
-    VectorIntegral(VectorField<T, M, N> vector_field, GeometricObject<T, M, N> object)
+    ScalarIntegral(ScalarField<T, M, N> scalar_field, GeometricObject<T, M, N> object)
     {
 
-        this->domain = vector_field.getDomain();
-        this->f_image = vector_field.getImage();
+        this->domain = scalar_field.getDomain();
+        this->f_image = scalar_field.getImage();
 
         Space<T, M, N> object_space = object.getSet();
 
@@ -43,11 +43,8 @@ public:
     {
         for (std::size_t i = 0; i < this->object_len; i++)
         {
-            for (std::size_t m = 0; m < M; m++)
-            {
-                double dx = (this->domain[parameterization[i + 1]][m] - this->domain[parameterization[i]][m]);
-                this->image[i + 1][m] = this->image[i][m] + this->f_image[i][m] * (dx);
-            }
+            double dx = (this->domain[parameterization[i + 1]] - this->domain[parameterization[i]]).magnitude();
+            this->image[i + 1] = this->image[i] + this->f_image[i] * (dx);
         }
     }
 };

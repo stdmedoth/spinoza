@@ -3,7 +3,7 @@
 
 #include <array>
 #include <cmath>
-#include "Space.hpp"
+#include "LinearAlgebra/Space.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class VectorFunction

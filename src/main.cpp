@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "Surface.hpp"
-#include "VectorField.hpp"
+#include "AnalyticGeometry/Surface.hpp"
+#include "LinearAlgebra/VectorField.hpp"
 
-#include "VectorIntegral.hpp"
+#include "Calculus/VectorIntegral.hpp"
 
-#include "Vector.hpp"
+#include "LinearAlgebra/Vector.hpp"
 
 #include <math.h>
 

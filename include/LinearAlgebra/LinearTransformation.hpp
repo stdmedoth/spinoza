@@ -4,7 +4,7 @@
 #include <array>
 #include <cmath>
 
-#include "VectorFunction.hpp"
+#include "Calculus/VectorFunction.hpp"
 
 template <typename T, std::size_t M, std::size_t N>
 class LinearTransformation : public VectorFunction<T, M, N>
