@@ -5,11 +5,15 @@
 #include <cmath>
 #include "LinearAlgebra/VectorField.hpp"
 
-template <typename T, std::size_t N>
-class Force : public VectorField
+namespace physics
 {
-public:
-protected:
+
+    template <typename T, std::size_t N>
+    class Force : public linear_algebra::VectorField
+    {
+    public:
+    protected:
+    };
 };
 
 #endif

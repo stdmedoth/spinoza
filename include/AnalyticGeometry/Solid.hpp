@@ -8,10 +8,13 @@
 
 #include "AnalyticGeometry/GeometricObject.hpp"
 
-template <typename T, std::size_t N>
-class Solid : public GeometricObject<T, 3, N>
+namespace analytic_geometry
 {
-public:
+    template <typename T, std::size_t N>
+    class Solid : public GeometricObject<T, 3, N>
+    {
+    public:
+    };
 };
 
 #endif

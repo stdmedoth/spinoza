@@ -6,21 +6,26 @@
 
 #include "Calculus/VectorFunction.hpp"
 
-template <typename T, std::size_t M, std::size_t N>
-class LinearTransformation : public VectorFunction<T, M, N>
-{
-public:
-    LinearTransformation()
-    {
-        this->domain = Space<T, M, N>();
-        this->image = Space<T, M, N>();
-    }
+using calculus::VectorFunction;
 
-    LinearTransformation(const Space<T, M, N> &domain, const Space<T, M, N> &image)
+namespace linear_algebra
+{
+    template <typename T, std::size_t M, std::size_t N>
+    class LinearTransformation : public VectorFunction<T, M, N>
     {
-        this->domain = domain;
-        this->image = image;
-    }
+    public:
+        LinearTransformation()
+        {
+            this->domain = Space<T, M, N>();
+            this->image = Space<T, M, N>();
+        }
+
+        LinearTransformation(const Space<T, M, N> &domain, const Space<T, M, N> &image)
+        {
+            this->domain = domain;
+            this->image = image;
+        }
+    };
 };
 
 #endif

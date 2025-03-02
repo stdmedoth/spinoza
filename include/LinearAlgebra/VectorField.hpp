@@ -6,26 +6,29 @@
 #include "LinearAlgebra/Space.hpp"
 #include "LinearAlgebra/LinearTransformation.hpp"
 
-template <typename T, std::size_t M, std::size_t N>
-class VectorField : public LinearTransformation<T, M, N>
+namespace linear_algebra
 {
-public:
-    VectorField()
+    template <typename T, std::size_t M, std::size_t N>
+    class VectorField : public LinearTransformation<T, M, N>
     {
-        this->domain = Space<T, M, N>();
-        this->image = Space<T, M, N>();
-    }
+    public:
+        VectorField()
+        {
+            this->domain = Space<T, M, N>();
+            this->image = Space<T, M, N>();
+        }
 
-    VectorField(const Space<T, M, N> &domain, const Space<T, M, N> &image)
-    {
-        this->domain = domain;
-        this->image = image;
-    }
+        VectorField(const Space<T, M, N> &domain, const Space<T, M, N> &image)
+        {
+            this->domain = domain;
+            this->image = image;
+        }
 
-    Vector<T, N> &operator[](std::size_t index)
-    {
-        return this->image[index];
-    }
+        Vector<T, N> &operator[](std::size_t index)
+        {
+            return this->image[index];
+        }
+    };
 };
 
 #endif

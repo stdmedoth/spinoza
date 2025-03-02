@@ -8,10 +8,13 @@
 
 #include "AnalyticGeometry/GeometricObject.hpp"
 
-template <typename T>
-class Point : public GeometricObject<T, 1, 1>
+namespace analytic_geometry
 {
-public:
+    template <typename T>
+    class Point : public GeometricObject<T, 1, 1>
+    {
+    public:
+    };
 };
 
 #endif
