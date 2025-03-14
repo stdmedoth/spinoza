@@ -17,6 +17,8 @@ namespace physics
         Space();
 
         void addBody(const Body &body);
+
+        void run();
     };
 };
 

@@ -6,6 +6,10 @@
 
 #include "Space.hpp"
 
+using linear_algebra::Space;
+using linear_algebra::Vector;
+using linear_algebra::VectorField;
+
 int main()
 {
     std::ofstream output_file("bicycle_racing2.dat");

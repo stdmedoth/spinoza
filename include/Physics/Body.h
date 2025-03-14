@@ -13,20 +13,30 @@ namespace physics
     {
     protected:
         double mass;
+        double charge;
         Vector<double, 3> position;
+        Vector<double, 3> velocity;
 
     public:
         Body();
 
-        Body(double);
+        Body(double, double, Vector<double, 3>, Vector<double, 3>);
 
         void setMass(double);
 
         double getMass();
 
+        void setCharge(double);
+
+        double getCharge();
+
         void setPosition(Vector<double, 3>);
 
         Vector<double, 3> getPosition();
+
+        void setVelocity(Vector<double, 3>);
+
+        Vector<double, 3> getVelocity();
     };
 };
 
