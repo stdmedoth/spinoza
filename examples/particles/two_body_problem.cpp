@@ -9,15 +9,17 @@ int main()
 {
         physics::Space space;
 
-        double mass = 9.1 * std::pow(10, -31);
-        double charge = 10 * 1.6 * std::pow(10, -19);
-        physics::Body particle1(mass, charge, Vector<double, 3>({-100, 0, 0}), Vector<double, 3>({0, 4, 0}));
-        physics::Body particle2(mass, -charge, Vector<double, 3>({0, 50, 0}), Vector<double, 3>({4, 0, 0}));
+        double mass = 9.1e-31;
+        double e = 1.6e-19;
+        double charge1 = 100 * e;
+        double charge2 = 1 * e;
+        physics::Body particle1(10 * mass, charge1, Vector<double, 3>({0, 0, 0}), Vector<double, 3>({0, 0, 0}));
+        physics::Body particle2(mass, -charge2, Vector<double, 3>({0, 100, 0}), Vector<double, 3>({15, 0, 0}));
 
         space.addBody(particle1);
         space.addBody(particle2);
 
-        space.run();
+        space.run(10000);
 
         return 0;
 }

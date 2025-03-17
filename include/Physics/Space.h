@@ -18,7 +18,7 @@ namespace physics
 
         void addBody(const Body &body);
 
-        void run();
+        void run(size_t loop_size);
     };
 };
 
