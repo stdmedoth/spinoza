@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 import glob
 
 # Ler todos os arquivos CSV de corpos
-files = sorted(glob.glob('body-*.dat'))
+files = sorted(glob.glob('body-position-*.dat'))
 
 # Ler os dados de cada arquivo
 bodies_data = [pd.read_csv(file) for file in files]

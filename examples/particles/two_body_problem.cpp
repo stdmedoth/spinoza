@@ -14,7 +14,7 @@ int main()
         double charge1 = 100 * e;
         double charge2 = 1 * e;
         physics::Body particle1(10 * mass, charge1, Vector<double, 3>({0, 0, 0}), Vector<double, 3>({0, 0, 0}));
-        physics::Body particle2(mass, -charge2, Vector<double, 3>({0, 100, 0}), Vector<double, 3>({15, 0, 0}));
+        physics::Body particle2(mass, -100 * charge2, Vector<double, 3>({0, 100, 0}), Vector<double, 3>({15, 0, 0}));
 
         space.addBody(particle1);
         space.addBody(particle2);

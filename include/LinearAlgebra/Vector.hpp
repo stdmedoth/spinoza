@@ -114,6 +114,15 @@ namespace linear_algebra
             return result;
         }
 
+        Vector cross(const Vector &other) const
+        {
+            Vector<T, M> result;
+            result[0] = data[1] * other.data[2] - data[2] * other.data[1];
+            result[1] = data[2] * other.data[0] - data[0] * other.data[2];
+            result[2] = data[0] * other.data[1] - data[1] * other.data[0];
+            return result;
+        }
+
         Vector operator/(const int scalar) const
         {
             Vector<T, M> result;
