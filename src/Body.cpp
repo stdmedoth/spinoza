@@ -1,5 +1,6 @@
 #include <cmath>
 #include "Physics/Body.h"
+#include "Physics/Particle.h"
 #include "LinearAlgebra/Space.hpp"
 #include "LinearAlgebra/Vector.hpp"
 
@@ -11,16 +12,27 @@ namespace physics
     {
         this->mass = 0;
         this->charge = 0;
-        this->position = Vector<double, 3>({0, 0, 0});
-        this->velocity = Vector<double, 3>({0, 0, 0});
+        this->particles = std::vector<Particle>();
+        this->cm_position = Vector<double, 3>({0, 0, 0});
+        this->cm_velocity = Vector<double, 3>({0, 0, 0});
     }
 
-    Body::Body(double mass, double charge, Vector<double, 3> position, Vector<double, 3> velocity)
+    Body::Body(std::vector<Particle> particles, double mass, double charge, Vector<double, 3> position, Vector<double, 3> velocity)
     {
-        this->mass = mass;
-        this->charge = charge;
-        this->position = position;
-        this->velocity = velocity;
+        this->particles = particles;
+
+        this->mass = 0;
+        Vector<double, 3> cm_position;
+        Vector<double, 3> cm_velocity;
+        for (size_t i = 0; i < particles.size(); i++)
+        {
+            this->mass += particles[i].getMass();
+            this->charge += particles[i].getCharge();
+            cm_position = cm_position + particles[i].getPosition() * particles[i].getMass();
+            cm_velocity = cm_velocity + particles[i].getVelocity() * particles[i].getMass();
+        }
+        this->cm_position = cm_position / this->mass;
+        this->cm_velocity = cm_velocity / this->mass;
     }
 
     void Body::setMass(double mass)
@@ -45,21 +57,35 @@ namespace physics
 
     void Body::setPosition(Vector<double, 3> position)
     {
-        this->position = position;
+        this->cm_position = position;
     }
 
     Vector<double, 3> Body::getPosition()
     {
-        return this->position;
+        return this->cm_position;
     }
 
     void Body::setVelocity(Vector<double, 3> velocity)
     {
-        this->velocity = velocity;
+        this->cm_velocity = velocity;
     }
 
     Vector<double, 3> Body::getVelocity()
     {
-        return this->velocity;
+        return this->cm_velocity;
+    }
+
+    void Body::addParticle(Particle particle)
+    {
+        this->particles.push_back(particle);
+    }
+    void Body::setParticles(std::vector<Particle> particles)
+    {
+        this->particles = particles;
+    }
+
+    std::vector<Particle> Body::getParticles()
+    {
+        return this->particles;
     }
 };

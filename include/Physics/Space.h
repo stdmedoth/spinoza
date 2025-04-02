@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "LinearAlgebra/Space.hpp"
+#include "Physics/Particle.h"
 #include "Physics/Body.h"
 
 namespace physics
@@ -11,12 +12,14 @@ namespace physics
     class Space
     {
     protected:
-        std::vector<Body> bodies;
+        std::vector<Particle> particles;
 
     public:
         Space();
 
-        void addBody(const Body &body);
+        void addParticle(const Particle &particle);
+
+        void addBody(Body &body);
 
         void run(size_t loop_size);
     };

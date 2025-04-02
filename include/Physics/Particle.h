@@ -1,29 +1,26 @@
-#ifndef BODY_H
-#define BODY_H
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
 #include <array>
-#include <vector>
 #include <cmath>
 #include "LinearAlgebra/Space.hpp"
-#include "Physics/Particle.h"
 
 using linear_algebra::Vector;
 
 namespace physics
 {
-    class Body
+    class Particle
     {
     protected:
-        std::vector<Particle> particles;
         double mass;
         double charge;
-        Vector<double, 3> cm_position;
-        Vector<double, 3> cm_velocity;
+        Vector<double, 3> position;
+        Vector<double, 3> velocity;
 
     public:
-        Body();
+        Particle();
 
-        Body(std::vector<Particle> particles, double mass, double charge, Vector<double, 3> position, Vector<double, 3> velocity);
+        Particle(double, double, Vector<double, 3>, Vector<double, 3>);
 
         void setMass(double);
 
@@ -40,12 +37,6 @@ namespace physics
         void setVelocity(Vector<double, 3>);
 
         Vector<double, 3> getVelocity();
-
-        void setParticles(std::vector<Particle>);
-
-        std::vector<Particle> getParticles();
-
-        void addParticle(Particle particle);
     };
 };
 
