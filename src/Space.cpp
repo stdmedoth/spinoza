@@ -37,8 +37,8 @@ namespace physics
         {
             std::ofstream position_output_file("body-position-" + std::to_string(i) + ".dat");
             std::ofstream velocity_output_file("body-velocity-" + std::to_string(i) + ".dat");
-            position_output_file << "x,y" << "\n";
-            velocity_output_file << "vx,vy" << "\n";
+            position_output_file << "x,y,z" << "\n";
+            velocity_output_file << "vx,vy,vz" << "\n";
         }
 
         do
@@ -85,10 +85,10 @@ namespace physics
                 this->particles[i].setPosition(r1 + new_v * dt);
 
                 Vector<double, 3> position = this->particles[i].getPosition();
-                position_output_file << position[0] << "," << position[1] << "\n";
+                position_output_file << position[0] << "," << position[1] << "," << position[2] << "\n";
 
                 Vector<double, 3> velocity = this->particles[i].getVelocity();
-                velocity_output_file << velocity[0] << "," << velocity[1] << "\n";
+                velocity_output_file << velocity[0] << "," << velocity[1] << "," << velocity[2] << "\n";
             }
         } while (i3++ < loop_size);
     }
