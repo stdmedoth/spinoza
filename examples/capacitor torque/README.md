@@ -1,4 +1,4 @@
-# Bicycle Racing Simulation
+# Capacitor Simulation
 This repository provides C++ simulations for analyzing the behavior of a parallel-plate capacitor, focusing on how charged particles interact within the electric field between the plates. The simulations allow you to create a `Capacitor` object, configure its properties, and observe the dynamics of particles placed inside the capacitor. Results are output to CSV files and can be visualized using a Python script to better understand the influence of the electric field on particle motion.
 
 ## Introduction
