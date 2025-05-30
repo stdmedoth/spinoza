@@ -11,7 +11,7 @@ This repository includes two C++ simulations:
 
 ## System Behavior
 
-### 1. **Single Particle Simulation (simulate.cpp)**
+### 1. **Single Particle Simulation (capacitor_particles.cpp)**
 
 - A `Capacitor` object is created with configurable plate separation, area, and applied voltage.
 - A charged particle (e.g., electron or ion) is placed between the plates with an initial position and velocity.
@@ -31,8 +31,6 @@ capacitor_simulation/
 ### C++ Simulations
 
 1. **capacitor_particles.cpp**: Models the motion of a single charged particle in a uniform electric field between capacitor plates. Outputs position and velocity data to `capacitor_particles.dat`.
-2. **capacitor_particles_multi.cpp**: Simulates multiple particles, optionally including inter-particle interactions. Outputs data to `capacitor_particles_multi.dat`.
-
 Both simulations use basic physics: the electric field \( E = V/d \) (where \( V \) is voltage and \( d \) is plate separation), and the force on a particle \( F = qE \).
 
 ### Python Visualization
